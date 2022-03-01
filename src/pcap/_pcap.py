@@ -346,7 +346,7 @@ class pcap:
         i = 1
         while True:
             # with nogil:
-            n = _pcap_ex.next_ex(self.__pcap, ct.byref(phdr), ct.byref(pkt))
+            n = _pcap_ex.next_ex(self.__pcap, ct.pointer(phdr), ct.pointer(pkt))
             if n == 0:  # timeout
                 continue
             elif n == 1:
@@ -386,7 +386,7 @@ class pcap:
         pkt  = ct.POINTER(ct.c_ubyte)()
         while True:
             # with nogil:
-            n = _pcap_ex.next_ex(self.__pcap, ct.byref(phdr), ct.byref(pkt))
+            n = _pcap_ex.next_ex(self.__pcap, ct.pointer(phdr), ct.pointer(pkt))
             if n == 0:  # timeout
                 continue
             elif n == 1:
